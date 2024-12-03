@@ -27,7 +27,7 @@ const language = computed({
 
 <template>
   <div class="language-switcher">
-    <select v-model="$i18n.locale" @change="changeLocale($i18n.locale)">
+    <select v-model="selectedLocale" @change="changeLocale">
       <option v-for="locale in $i18n.locales" :key="locale.code" :value="locale.code">
         {{ locale.name }}
       </option>
@@ -37,11 +37,16 @@ const language = computed({
 
 <script>
 export default {
+  data() {
+    return {
+      selectedLocale: this.$i18n.locale, // Set initial locale
+    };
+  },
   methods: {
-    changeLocale(locale) {
-      this.$i18n.setLocale(locale); // Dynamically update the locale
-    }
-  }
+    changeLocale() {
+      this.$i18n.setLocale(this.selectedLocale); // Dynamically change locale
+    },
+  },
 };
 </script>
 
@@ -58,4 +63,5 @@ select {
   cursor: pointer;
 }
 </style>
+
 

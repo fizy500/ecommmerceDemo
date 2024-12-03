@@ -11,6 +11,7 @@ export default {
 
 <template>
   <div class="product-card">
+    <img :src="require(`${item.image}`)" :alt="item.name" class="product-image" />
     <img :src="item.image" :alt="item.name" class="product-image" />
     <h3>{{ $t('product_title') }}: {{ item.name }}</h3>
     <p>{{ $t('product_price') }}: ${{ item.price }}</p>
